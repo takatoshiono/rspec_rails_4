@@ -26,4 +26,26 @@ describe Contact do
     contact = Contact.new(firstname: 'John', lastname: 'Doe', email: 'johndoe@example.com')
     expect(contact.name).to eq 'John Doe'
   end
+
+  it "returns a sorted array of result that match" do
+    smith = Contact.create(firstname: 'John', lastname: 'Smith',
+                           email: 'jsmith@example.com')
+    jones = Contact.create(firstname: 'Time', lastname: 'Jones',
+                           email: 'tjones@example.com')
+    johnson = Contact.create(firstname: 'John', lastname: 'Johnson',
+                             email: 'jjohnson@example.com')
+
+    expect(Contact.by_letter('J')).to eq [johnson, jones]
+  end
+
+  it "returns a sorted array of result that match" do
+    smith = Contact.create(firstname: 'John', lastname: 'Smith',
+                           email: 'jsmith@example.com')
+    jones = Contact.create(firstname: 'Time', lastname: 'Jones',
+                           email: 'tjones@example.com')
+    johnson = Contact.create(firstname: 'John', lastname: 'Johnson',
+                             email: 'jjohnson@example.com')
+
+    expect(Contact.by_letter('J')).to_not include smith
+  end
 end
