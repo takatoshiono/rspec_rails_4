@@ -13,8 +13,13 @@ describe Contact do
     expect(Contact.new(firstname: nil)).to have(1).errors_on(:firstname)
   end
 
-  it "is invalid without a lastname"
-  it "is invalid without an email address"
+  it "is invalid without a lastname" do
+    expect(Contact.new(lastname: nil)).to have(1).errors_on(:lastname)
+  end
+
+  it "is invalid without an email address" do
+    expect(Contact.new(email: nil)).to have(1).errors_on(:email)
+  end
 
   it "is invalid with a duplicate email address" do
     Contact.create(firstname: 'Joe', lastname: 'Tester', email: 'tester@example.com')
